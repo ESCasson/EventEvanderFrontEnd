@@ -11,7 +11,7 @@ const NotificationScreen = props => {
 return (
     <View>
         <Card style={styles.allEventsButton}>
-        <Button color={Colors.darkAccent} title="VIEW ALL EVENTS" onPress={props.moveButton} />
+        <Button color={Colors.darkAccent} title="SIGN UP" onPress={props.moveButton} />
     </Card>
     <EventsList data={props.data} title='My Evade List' />
     

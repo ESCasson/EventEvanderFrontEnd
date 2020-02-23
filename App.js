@@ -3,6 +3,7 @@ import { ActivityIndicator, View, Text  } from 'react-native';
 import Header from './components/Header';
 import NotificationScreen from './screens/NotificationScreen';
 import AllEventsScreen from './screens/AllEventsScreen';
+import SignUpScreen from './screens/SignUpScreen';
 
 export default class App extends Component {
 
@@ -10,7 +11,7 @@ export default class App extends Component {
     super(props)
     this.state ={ 
       isLoading: true,
-      content: 'notification'}
+      content: 'SignUp'}
 
       this.handleAllEventsPress = this.handleAllEventsPress.bind(this)
       this.handleNotsPress = this.handleNotsPress.bind(this)
@@ -51,15 +52,25 @@ export default class App extends Component {
   if(this.state.isLoading){
 
   return(
-  <View style={{flex: 1, padding: 20}}>
+  <View style={{padding: 20}}>
     <ActivityIndicator/>
   </View>
 )
 }
 
+if(this.state.content === 'SignUp'){
+  return (
+    <View style={{paddingTop:20}}>
+      <Header />
+    <SignUpScreen moveButton={this.handleNotsPress} />
+    </View>
+    
+  )
+}
+
 if(this.state.content === 'allEvents'){
   return (
-    <View style={{flex: 1, paddingTop:20}}>
+    <View style={{paddingTop:20}}>
       <Header />
     <AllEventsScreen data={this.state.dataSource} moveButton={this.handleNotsPress} />
     </View>
@@ -71,7 +82,7 @@ if(this.state.content === 'allEvents'){
 
 
     return (
-    <View style={{flex: 1, paddingTop:20}}>
+    <View style={{paddingTop:20}}>
       <Header />
       <NotificationScreen data={this.state.dataSource} moveButton={this.handleAllEventsPress}  />
     </View>
