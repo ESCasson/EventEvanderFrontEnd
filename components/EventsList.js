@@ -9,7 +9,7 @@ const EventsList = props => {
     <Card style={styles.list}>
     <Text style={styles.title}>My Evade Notifications</Text>
     <FlatList
-          data={props.dataSource}
+          data={props.data}
           renderItem={({item}) => <Event event={item}></Event>}
           keyExtractor={({id}, index) => id.toString()}
         />

@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
-import { ActivityIndicator, View  } from 'react-native';
-import EventsList from './components/EventsList';
+import { ActivityIndicator, View, Text  } from 'react-native';
 import Header from './components/Header';
+import NotificationScreen from './screens/NotificationScreen';
+import NotificationScreen from './screens/NotificationScreen';
 
 export default class App extends Component {
 
   constructor(props){
     super(props)
-    this.state ={ isLoading: true}
+    this.state ={ 
+      isLoading: true,
+      content: 'notification'}
+
+      this.handleAllEventsPress = this.handleAllEventsPress.bind(this)
   }
 
   componentDidMount(){
@@ -24,29 +29,43 @@ export default class App extends Component {
       .catch((error) =>{
         console.error(error);
       });
-  }
-
-
-
-  render(){
-
-    if(this.state.isLoading){
-      return(
-        
-        <View style={{flex: 1, padding: 20}}>
-          <Header />
-          <ActivityIndicator/>
-        </View>
-      )
     }
 
-    return(
-      
-      <View style={{flex: 1, paddingTop:20}}>
-        <Header />
-        <EventsList dataSource={this.state.dataSource}  />
-      </View>
+    handleAllEventsPress(){
+      this.setState({
+        content: 'allEvents'
+      })
+    }
+
+
+    render(){
+  
+     
+  if(this.state.isLoading){
+
+  return(
+  <View style={{flex: 1, padding: 20}}>
+    <ActivityIndicator/>
+  </View>
+)
+}
+
+if(this.state.content === 'allEvents'){
+  return (
+    <Text>Button was pressed</Text>
+  )
+}
+
+
+
+
+    return (
+    <View style={{flex: 1, paddingTop:20}}>
+      <Header />
+      <NotificationScreen data={this.state.dataSource} allEventsButton={this.handleAllEventsPress}  />
+    </View>
     );
-  }
+ 
+}
 }
 

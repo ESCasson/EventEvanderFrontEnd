@@ -6,7 +6,7 @@ import  Colors  from '../constants/colors';
 
 
 
-const NotificationScreen = props => {
+const AllEventsScreen = props => {
 
 return (
     <View>
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default NotificationScreen;
+export default AllEventsScreen;
