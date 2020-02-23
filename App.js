@@ -1,19 +1,52 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import { ActivityIndicator, View  } from 'react-native';
+import EventsList from './components/EventsList';
+import Header from './components/Header';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+export default class App extends Component {
+
+  constructor(props){
+    super(props)
+    this.state ={ isLoading: true}
+  }
+
+  componentDidMount(){
+    return fetch("https://raw.githubusercontent.com/ESCasson/API/master/Basic")
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson,
+        }, function(){
+        });
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
+
+
+
+  render(){
+
+    if(this.state.isLoading){
+      return(
+        
+        <View style={{flex: 1, padding: 20}}>
+          <Header />
+          <ActivityIndicator/>
+        </View>
+      )
+    }
+
+    return(
+      
+      <View style={{flex: 1, paddingTop:20}}>
+        <Header />
+        <EventsList dataSource={this.state.dataSource}  />
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
