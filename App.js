@@ -18,7 +18,9 @@ export default class App extends Component {
   }
 
   componentDidMount(){
-    return fetch("https://raw.githubusercontent.com/ESCasson/API/master/Basic")
+    const url = "https://raw.githubusercontent.com/ESCasson/API/master/Basic"
+
+    return fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
 

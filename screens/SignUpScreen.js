@@ -1,12 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Button} from 'react-native';
 import EventsList from '../components/EventsList';
 import Card from '../components/Card';
 import  Colors  from '../constants/colors';
+import Request from '../helpers/request';
 
 
 
 const NotificationScreen = props => {
+
+    const [venues, setVenues] = useState('');
+
+    
+        
+        const getVenues = Request.get("https://raw.githubusercontent.com/ESCasson/API/master/venues");
+        
+        getVenues.then((data) => {
+          setVenues(data)
+        });
+    
+    
+    
 
 return (
     <View>
