@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
-import EventsList from '../components/EventsList';
+import AllEventsList from '../components/AllEventsList';
 import Card from '../components/Card';
 import  Colors  from '../constants/colors';
 
@@ -10,10 +10,24 @@ const AllEventsScreen = props => {
 
 return (
     <View>
-    <EventsList data={props.data} />
-    <Card style={styles.allEventsButton}>
-        <Button color={Colors.darkShades} title="All Events" onPress={props.allEventsButton} />
+         <Card style={styles.allEventsButton}>
+         <View style={styles.button}>
+             <Button color={Colors.darkShades} title="Today" onPress={props.moveButton} />
+             </View><View style={styles.button}>
+             <Button color={Colors.darkShades} title="Tomorrow" onPress={props.moveButton} />
+             </View><View style={styles.button}>
+             <Button color={Colors.darkShades} title="Next 7 Days" onPress={props.moveButton} />
+             </View>
+             <View style={styles.button}>
+             <Button color={Colors.darkShades} title="Next 30 Days" onPress={props.moveButton} />
+             </View>
+             <View>
+             <Button color={Colors.darkAccent} title=" Go Back To Front Page " onPress={props.moveButton} />
+             </View>
+        
     </Card>
+    <AllEventsList title='All Events' data={props.data} />
+   
 
     </View>
     
@@ -25,13 +39,20 @@ return (
 
 const styles = StyleSheet.create({
     allEventsButton: {
-        width: 300,
-        maxWidth: '80%',
+        marginTop: 20,
+        width: 600,
+        maxWidth: '90%',
         alignSelf: "center",
-        backgroundColor: Colors.primary
+        backgroundColor: Colors.primary,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        paddingHorizontal: 30
     },
     button: {
-        color: Colors.primary
+        width: 106,
+        color: Colors.primary,
+        padding: 5
     }
 });
 

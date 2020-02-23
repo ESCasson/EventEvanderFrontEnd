@@ -1,18 +1,26 @@
-import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-import Event from './Event';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, FlatList} from 'react-native';
+import AllEventItem from './AllEventItem';
 import Card from './Card';
 import Colors from '../constants/colors';
 
-const EventsList = props => {
+const AllEventsList = props => {
+
+
+
     return (
-    <Card style={styles.list}>
+    <Card style={styles.cardList}>
     <Text style={styles.title}>{props.title}</Text>
+    <View style={styles.list}>
     <FlatList
           data={props.data}
-          renderItem={({item}) => <Event event={item}></Event>}
+          renderItem={({item}) => 
+           <AllEventItem event={item}></AllEventItem>
+            }
           keyExtractor={({id}, index) => id.toString()}
         />
+    </View>
+   
    
     </Card>
     
@@ -21,10 +29,10 @@ const EventsList = props => {
 };
 
 const styles = StyleSheet.create({
-    list: {
+    cardList: {
       margin: 20,
       backgroundColor: Colors.lightAccent,
-      alignItems: 'center'
+      justifyContent: 'center'
     },
     title: {
       fontFamily: 'monospace',
@@ -32,7 +40,7 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
       fontSize: 20,
       fontWeight: 'bold'
-
     }
+   
   });
-export default EventsList;
+export default AllEventsList;

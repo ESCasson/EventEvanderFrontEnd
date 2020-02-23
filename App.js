@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { ActivityIndicator, View, Text  } from 'react-native';
 import Header from './components/Header';
 import NotificationScreen from './screens/NotificationScreen';
-import NotificationScreen from './screens/NotificationScreen';
+import AllEventsScreen from './screens/AllEventsScreen';
 
 export default class App extends Component {
 
@@ -13,6 +13,7 @@ export default class App extends Component {
       content: 'notification'}
 
       this.handleAllEventsPress = this.handleAllEventsPress.bind(this)
+      this.handleNotsPress = this.handleNotsPress.bind(this)
   }
 
   componentDidMount(){
@@ -37,9 +38,15 @@ export default class App extends Component {
       })
     }
 
+    handleNotsPress(){
+      this.setState({
+        content: ''
+      })
+    }
+
 
     render(){
-  
+
      
   if(this.state.isLoading){
 
@@ -52,7 +59,11 @@ export default class App extends Component {
 
 if(this.state.content === 'allEvents'){
   return (
-    <Text>Button was pressed</Text>
+    <View style={{flex: 1, paddingTop:20}}>
+      <Header />
+    <AllEventsScreen data={this.state.dataSource} moveButton={this.handleNotsPress} />
+    </View>
+    
   )
 }
 
@@ -62,7 +73,7 @@ if(this.state.content === 'allEvents'){
     return (
     <View style={{flex: 1, paddingTop:20}}>
       <Header />
-      <NotificationScreen data={this.state.dataSource} allEventsButton={this.handleAllEventsPress}  />
+      <NotificationScreen data={this.state.dataSource} moveButton={this.handleAllEventsPress}  />
     </View>
     );
  

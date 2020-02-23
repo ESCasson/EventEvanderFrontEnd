@@ -10,10 +10,11 @@ const NotificationScreen = props => {
 
 return (
     <View>
-    <EventsList data={props.data} />
-    <Card style={styles.allEventsButton}>
-        <Button color={Colors.darkShades} title="All Events" onPress={props.allEventsButton} />
+        <Card style={styles.allEventsButton}>
+        <Button color={Colors.darkAccent} title="VIEW ALL EVENTS" onPress={props.moveButton} />
     </Card>
+    <EventsList data={props.data} title='My Evade List' />
+    
 
     </View>
     
@@ -25,6 +26,7 @@ return (
 
 const styles = StyleSheet.create({
     allEventsButton: {
+        marginTop: 10,
         width: 300,
         maxWidth: '80%',
         alignSelf: "center",
