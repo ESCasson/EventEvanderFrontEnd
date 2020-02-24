@@ -11,6 +11,7 @@ const NotificationScreen = props => {
     const [venues, setVenues] = useState('');
     const [email, setEmail] = useState('');
     const[choosenVenues, setChoosenVenues] = useState([]);
+  
     
     const url = "https://raw.githubusercontent.com/ESCasson/API/master/venues"
 
@@ -42,32 +43,34 @@ const NotificationScreen = props => {
         setChoosenVenues( newChoosenVenues);
            
     };
+
+    const handleClear = () => {
+        setEmail('');
+    };
+
+    
     
           
 
 return (
     <View>
-        <Card style={styles.allEventsButton}>
-        <Button color={Colors.darkAccent} title="SIGN UP" onPress={props.moveButton} />
-    </Card>
+        
     <Card style={styles.signUpCard}>
         <Text>Please enter email address: </Text>
-        <TextInput onChangeText={emailInputHandler} style={styles.input} value={email}></TextInput>
+        <TextInput onChangeText={emailInputHandler} style={styles.input} value={email} ></TextInput>
+        <Button title='Clear Email' onPress={handleClear}/>
 
         <FlatList data={venues}
           renderItem={({item}) => 
-           <VenueItem venue={item} checkOn={handleVenueCheckboxOn} checkOff={handleVenueCheckboxOff}></VenueItem>
-            }
-          keyExtractor={({id}, index) => id.toString()} />
-          <Text>Choosen Venues</Text>
-          <FlatList data={choosenVenues}
-          renderItem={({item}) => 
-           <Text>{item.name}</Text>
+           <VenueItem venue={item} checkOn={handleVenueCheckboxOn} checkOff={handleVenueCheckboxOff} ></VenueItem>
             }
           keyExtractor={({id}, index) => id.toString()} />
 
+          
     </Card>
-    
+    <Card style={styles.allEventsButton}>
+        <Button color={Colors.darkAccent} title="SIGN UP" onPress={props.moveButton} />
+    </Card>
 
     </View>
     

@@ -6,6 +6,7 @@ import Colors from '../constants/colors';
 const VenueItem = props => {
 
     const [checkedState, setCheckedState] = useState(false);
+   
 
     handleCheckboxPress = () => {
         if(checkedState === true){
@@ -19,7 +20,7 @@ const VenueItem = props => {
 
     return (
    <View style={styles.listItem}>
-    <CheckBox checked={checkedState} onPress={handleCheckboxPress} />
+    <CheckBox onPress={handleCheckboxPress} checked={checkedState} />
     <Text>{props.venue.name}</Text>
    </View>
             
