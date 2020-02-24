@@ -12,6 +12,7 @@ const VenueItem = props => {
             setCheckedState(false);
         } else {
             setCheckedState(true);
+            props.checkOn(props.venue)
         }
     };
 

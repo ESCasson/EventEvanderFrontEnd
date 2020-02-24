@@ -51,6 +51,13 @@ return (
            <VenueItem venue={item} checkOn={handleVenueCheckboxOn}></VenueItem>
             }
           keyExtractor={({id}, index) => id.toString()} />
+          <Text>Choosen Venues</Text>
+          <FlatList data={choosenVenues}
+          renderItem={({item}) => 
+           <Text>{item.name}</Text>
+            }
+          keyExtractor={({id}, index) => id.toString()} />
+
     </Card>
     
 
