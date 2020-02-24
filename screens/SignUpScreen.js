@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {View, StyleSheet, Button, Text, TextInput, FlatList} from 'react-native';
 import Card from '../components/Card';
 import  Colors  from '../constants/colors';
@@ -27,13 +27,21 @@ const NotificationScreen = props => {
         
         
     
-        const emailInputHandler = (email) => {
+    const emailInputHandler = (email) => {
             setEmail(email);
           };
     
     const handleVenueCheckboxOn = (venue) => {
             setChoosenVenues(currentVenue => [...choosenVenues, venue] );
           };
+
+    const handleVenueCheckboxOff = (venue) => {
+        const newChoosenVenues = choosenVenues.filter(function(item) {
+            return item.name !== venue.name });
+
+        setChoosenVenues( newChoosenVenues);
+           
+    };
     
           
 
@@ -48,7 +56,7 @@ return (
 
         <FlatList data={venues}
           renderItem={({item}) => 
-           <VenueItem venue={item} checkOn={handleVenueCheckboxOn}></VenueItem>
+           <VenueItem venue={item} checkOn={handleVenueCheckboxOn} checkOff={handleVenueCheckboxOff}></VenueItem>
             }
           keyExtractor={({id}, index) => id.toString()} />
           <Text>Choosen Venues</Text>

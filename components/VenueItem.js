@@ -10,6 +10,7 @@ const VenueItem = props => {
     handleCheckboxPress = () => {
         if(checkedState === true){
             setCheckedState(false);
+            props.checkOff(props.venue)
         } else {
             setCheckedState(true);
             props.checkOn(props.venue)
