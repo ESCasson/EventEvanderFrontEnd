@@ -25,7 +25,6 @@ export default class App extends Component {
       .then((responseJson) => {
 
         this.setState({
-          isLoading: false,
           dataSource: responseJson,
         }, function(){
         });
@@ -51,16 +50,9 @@ export default class App extends Component {
     render(){
 
      
-  if(this.state.isLoading){
-
-  return(
-  <View style={{padding: 20}}>
-    <ActivityIndicator/>
-  </View>
-)
-}
 
 if(this.state.content === 'SignUp'){
+
   return (
     <View style={{paddingTop:20}}>
       <Header />
@@ -79,8 +71,6 @@ if(this.state.content === 'allEvents'){
     
   )
 }
-
-
 
 
     return (

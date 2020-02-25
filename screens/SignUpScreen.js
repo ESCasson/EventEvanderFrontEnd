@@ -6,45 +6,45 @@ import VenueItem from '../components/VenueItem';
 
 
 
-const NotificationScreen = props => {
-
+const SignUpScreen = props => {
+    console.log("Called");
+    
     const [venues, setVenues] = useState('');
     const [email, setEmail] = useState('');
     const[choosenVenues, setChoosenVenues] = useState([]);
   
-    
-    const url = "http://localhost:8080/api/venues"
+    const handleGetVenues = () => {
+        const url = "http://localhost:8080/api/venues"
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        setVenues(responseJson)
-    
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
- 
-    const newUser = {
-            emailAddress: "fe@test.com"
-        };
-        const urltest = "http://localhost:8080/api/users";
-
-        fetch(urltest), {
-            method: 'POST',
-                headers: {
-            'Content-Type': 'application/json',
-         },
-            body: JSON.stringify(newUser),
-        };
-
-
-   
-
+        fetch(url)
+          .then((response) => response.json())
+          .then((responseJson) => {
+            setVenues(responseJson)
         
+          })
+          .catch((error) =>{
+            console.error(error);
+          });
+    };
+    
+   const handleSignUp = () => {
 
-   
+    const newUser = { emailAddress:  {email}   };
+    console.log({email});
+    const urltest = "http://localhost:8080/api/users";
+
+    
+
+        fetch((urltest), {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+            'Content-Type': 'application/json'},
+            body: JSON.stringify(newUser)
+        });
         
+   };
+
     
     const emailInputHandler = (email) => {
             setEmail(email);
@@ -87,7 +87,8 @@ return (
           
     </Card>
     <Card style={styles.allEventsButton}>
-        <Button color={Colors.darkAccent} title="SIGN UP"  />
+        <Button color={Colors.darkAccent} title="SIGN UP" onPress={handleSignUp}  />
+        <Button color={Colors.darkAccent} title="Get Venues" onPress={handleGetVenues}  />
     </Card>
 
     </View>
@@ -130,4 +131,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default NotificationScreen;
+export default SignUpScreen;
