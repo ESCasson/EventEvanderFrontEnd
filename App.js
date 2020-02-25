@@ -11,15 +11,37 @@ export default class App extends Component {
     super(props)
     this.state ={ 
       isLoading: true,
-      content: 'SignUp'}
+      content: 'SignUp',
+      focusVenueEvents: []}
 
       this.handleAllEventsPress = this.handleAllEventsPress.bind(this)
       this.handleNotsPress = this.handleNotsPress.bind(this)
     
   }
 
+  pullOutUsersVenuesEvents = () => {
+    const newEventArray = [];
+    this.state.userData.venues.map((venue) => {
+      venue.events.map((event) => {
+        const EventItem =
+        {
+          "venue": venue.name,
+          "title": event.title,
+          "timeDate": event.startTime,
+          "id": event.id
+
+        }
+      newEventArray.push(EventItem)
+
+      })
+    });
+    this.setState({
+      focusVenueEvents: newEventArray
+    });
+  }
+
   componentDidMount(){
-    const urlEvent = "http://localhost:8080/api/events"
+    const urlEvent = "http://localhost:8080/api/events/next7days"
     const urlUser = "http://localhost:8080/api/users/5"
 
     const eventPromise = ()=> {
@@ -38,13 +60,15 @@ export default class App extends Component {
           dataSource: data
         });
       })
-      .then(userPromise()
+      .then(
+        userPromise()
         .then((data) => 
         {
           this.setState({
             userData: data
           });
-        })
+        }).then(
+          this.pullOutUsersVenuesEvents)
         
         )
      
@@ -89,7 +113,7 @@ if(this.state.content === 'allEvents'){
   return (
     <View style={{paddingTop:20}}>
       <Header />
-    <AllEventsScreen data={this.state.dataSource} moveButton={this.handleNotsPress} />
+    <AllEventsScreen user={this.state.userData} data={this.state.dataSource} moveButton={this.handleNotsPress} />
     </View>
     
   )
@@ -99,10 +123,11 @@ if(this.state.content === 'allEvents'){
     return (
     <View style={{paddingTop:20}}>
       <Header />
-      <NotificationScreen data={this.state.userData} moveButton={this.handleAllEventsPress}  />
+      <NotificationScreen data={this.state.focusVenueEvents} moveButton={this.handleAllEventsPress}  />
     </View>
     );
  
 }
 }
+
 

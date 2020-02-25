@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList} from 'react-native';
 import AllEventItem from './AllEventItem';
 import Card from './Card';
 import Colors from '../constants/colors';
+import TestClass from '../components/TestClass';
 
 const AllEventsList = props => {
 
@@ -15,7 +16,7 @@ const AllEventsList = props => {
     <FlatList
           data={props.data}
           renderItem={({item}) => 
-           <AllEventItem event={item}></AllEventItem>
+           <TestClass user={props.user} event={item} />
             }
           keyExtractor={({id}, index) => id.toString()}
         />
@@ -30,7 +31,7 @@ const AllEventsList = props => {
 
 const styles = StyleSheet.create({
     cardList: {
-      margin: 20,
+      margin: 10,
       backgroundColor: Colors.lightAccent,
       justifyContent: 'center'
     },

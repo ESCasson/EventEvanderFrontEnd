@@ -8,17 +8,13 @@ import  Colors  from '../constants/colors';
 
 const NotificationScreen = props => {
     
-   
-
 
     return (
         <View>
             <Card style={styles.allEventsButton}>
             <Button color={Colors.darkAccent} title="VIEW ALL EVENTS" onPress={props.moveButton} />
         </Card>
-        <EventsList  title='My Evade List' date={props.data} />
-        <Button title="Get Events"  />
-        
+        <EventsList  title='My Evade List' data={props.data} />
     
         </View>
         

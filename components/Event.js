@@ -6,7 +6,8 @@ const Event = props => {
       <TouchableOpacity>
         <Text style={styles.title}>{props.event.title}</Text>
         <View style={styles.details}>
-        <Text style={styles.item}>Start Time: {props.event.startTime}</Text>
+        <Text style={styles.item}>Start Time: {props.event.timeDate}</Text>
+        <Text style={styles.item}>Venue: {props.event.venue}</Text>
         </View>
         
         
@@ -21,7 +22,6 @@ const styles = StyleSheet.create({
       fontWeight: 'bold'
     },
     details: {
-      flexDirection: 'row',
       justifyContent: 'flex-start'
     },
     item: {

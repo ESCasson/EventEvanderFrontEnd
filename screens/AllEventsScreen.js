@@ -12,9 +12,9 @@ return (
     <View>
          <Card style={styles.allEventsButton}>
          <View style={styles.button}>
-             <Button color={Colors.darkShades} title="Today" onPress={props.moveButton} />
+             <Button color={Colors.darkShades} title="Today"  />
              </View><View style={styles.button}>
-             <Button color={Colors.darkShades} title="Tomorrow" onPress={props.moveButton} />
+             <Button color={Colors.darkShades} title="Tomorrow"  />
              </View><View style={styles.button}>
              <Button color={Colors.darkShades} title="Next 7 Days" onPress={props.moveButton} />
              </View>
@@ -26,7 +26,7 @@ return (
              </View>
         
     </Card>
-    <AllEventsList title='All Events' data={props.data} />
+    <AllEventsList title='All Events' data={props.data} user={props.user} />
    
 
     </View>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30
     },
     button: {
-        width: 106,
+        width: 110,
         color: Colors.primary,
         padding: 5
     }
