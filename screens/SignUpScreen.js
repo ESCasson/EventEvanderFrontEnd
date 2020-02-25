@@ -83,7 +83,10 @@ const SignUpScreen = props => {
         setEmail('');
     };
 
-    
+    const onPressCombined = () => {
+        props.moveButton;
+        props.getUser;
+    }
     
           
 
@@ -105,7 +108,8 @@ return (
           
     </Card>
     <Card style={styles.allEventsButton}>
-        <Button color={Colors.darkAccent} title="SIGN UP" onPress={handleSignUp, props.moveButton}  />
+        <Button color={Colors.darkAccent} title="SIGN UP" onPress={handleSignUp}  />
+        <Button color={Colors.darkAccent} title="Go To App" onPress={props.moveButton} />
         
     </Card>
 

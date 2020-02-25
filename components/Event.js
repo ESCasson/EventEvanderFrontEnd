@@ -8,7 +8,7 @@ const Event = props => {
         <View style={styles.details}>
         <Text style={styles.item}>Start Time: {props.event.startTime}</Text>
         </View>
-        <Text style={styles.item} >Venue: {props.event.venue.name}</Text>
+        
         
   
       </TouchableOpacity>

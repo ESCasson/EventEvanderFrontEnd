@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, Component} from 'react';
 import {View, StyleSheet, Button} from 'react-native';
 import EventsList from '../components/EventsList';
 import Card from '../components/Card';
@@ -7,19 +7,26 @@ import  Colors  from '../constants/colors';
 
 
 const NotificationScreen = props => {
-
-return (
-    <View>
-        <Card style={styles.allEventsButton}>
-        <Button color={Colors.darkAccent} title="VIEW ALL EVENTS" onPress={props.moveButton} />
-    </Card>
-    <EventsList data={props.data} title='My Evade List' />
     
+   
 
-    </View>
-    
+
+    return (
+        <View>
+            <Card style={styles.allEventsButton}>
+            <Button color={Colors.darkAccent} title="VIEW ALL EVENTS" onPress={props.moveButton} />
+        </Card>
+        <EventsList  title='My Evade List' date={props.data} />
+        <Button title="Get Events"  />
         
-    );
+    
+        </View>
+        
+            
+        );
+
+
+
 
 };
 

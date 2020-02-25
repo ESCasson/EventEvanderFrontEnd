@@ -15,24 +15,47 @@ export default class App extends Component {
 
       this.handleAllEventsPress = this.handleAllEventsPress.bind(this)
       this.handleNotsPress = this.handleNotsPress.bind(this)
+    
   }
 
   componentDidMount(){
-    const url = "http://localhost:8080/api/events"
+    const urlEvent = "http://localhost:8080/api/events"
+    const urlUser = "http://localhost:8080/api/users/5"
 
-    return fetch(url)
-      .then((response) => response.json())
-      .then((responseJson) => {
-
+    const eventPromise = ()=> {
+      return fetch(urlEvent)
+      .then((res) => res.json());
+    }
+    const userPromise = ()=> {
+      return fetch(urlUser)
+      .then((res) => res.json());
+    }
+   
+    return  eventPromise()
+      .then((data) => 
+      {
         this.setState({
-          dataSource: responseJson,
-        }, function(){
+          dataSource: data
         });
       })
-      .catch((error) =>{
-        console.error(error);
-      });
+      .then(userPromise()
+        .then((data) => 
+        {
+          this.setState({
+            userData: data
+          });
+        })
+        
+        )
+     
+
+    
     }
+
+    
+    
+
+
 
     handleAllEventsPress(){
       this.setState({
@@ -76,7 +99,7 @@ if(this.state.content === 'allEvents'){
     return (
     <View style={{paddingTop:20}}>
       <Header />
-      <NotificationScreen data={this.state.dataSource} moveButton={this.handleAllEventsPress}  />
+      <NotificationScreen data={this.state.userData} moveButton={this.handleAllEventsPress}  />
     </View>
     );
  

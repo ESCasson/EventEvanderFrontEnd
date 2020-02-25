@@ -5,6 +5,7 @@ import Card from './Card';
 import Colors from '../constants/colors';
 
 const EventsList = props => {
+  console.log(props.data)
     return (
     <Card style={styles.list}>
     <Text style={styles.title}>{props.title}</Text>
