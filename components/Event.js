@@ -6,7 +6,6 @@ const Event = props => {
       <TouchableOpacity>
         <Text style={styles.title}>{props.event.title}</Text>
         <View style={styles.details}>
-        <Text style={styles.item} >Date: {props.event.date}</Text>
         <Text style={styles.item}>Start Time: {props.event.startTime}</Text>
         </View>
         <Text style={styles.item} >Venue: {props.event.venue.name}</Text>

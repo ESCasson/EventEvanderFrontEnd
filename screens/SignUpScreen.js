@@ -13,7 +13,7 @@ const SignUpScreen = props => {
     const [email, setEmail] = useState('');
     const[choosenVenues, setChoosenVenues] = useState([]);
   
-    const handleGetVenues = () => {
+     const handleChooseVenues = () => {
         const url = "http://localhost:8080/api/venues"
 
         fetch(url)
@@ -26,11 +26,28 @@ const SignUpScreen = props => {
             console.error(error);
           });
     };
+
+    const reMapChoosenVenueArray = () => {
+        const newArray = [];
+
+        const newVenues = choosenVenues.map((venue) =>{
+            const newVenue = {
+                name: venue.name, 
+                capacity: venue.capacity, 
+                placeId: venue.placeId,
+                id: venue.id
+            }
+            newArray.push(newVenue);
+        } )
+        return newArray;
+    }
     
    const handleSignUp = () => {
 
-    const newUser = { emailAddress:  {email}   };
-    console.log({email});
+    const newUser = { emailAddress:  email,
+                        venues: reMapChoosenVenueArray()   };
+                        console.log(newUser);
+   
     const urltest = "http://localhost:8080/api/users";
 
     
@@ -77,6 +94,7 @@ return (
         <Text>Please enter email address: </Text>
         <TextInput onChangeText={emailInputHandler} style={styles.input} value={email} ></TextInput>
         <Button title='Clear Email' onPress={handleClear}/>
+        <Button color={Colors.darkAccent} title="Choose Venues" onPress={handleChooseVenues}  />
 
         <FlatList data={venues}
           renderItem={({item}) => 
@@ -87,8 +105,8 @@ return (
           
     </Card>
     <Card style={styles.allEventsButton}>
-        <Button color={Colors.darkAccent} title="SIGN UP" onPress={handleSignUp}  />
-        <Button color={Colors.darkAccent} title="Get Venues" onPress={handleGetVenues}  />
+        <Button color={Colors.darkAccent} title="SIGN UP" onPress={handleSignUp, props.moveButton}  />
+        
     </Card>
 
     </View>
