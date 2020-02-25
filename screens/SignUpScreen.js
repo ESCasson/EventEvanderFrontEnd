@@ -13,7 +13,7 @@ const NotificationScreen = props => {
     const[choosenVenues, setChoosenVenues] = useState([]);
   
     
-    const url = "https://raw.githubusercontent.com/ESCasson/API/master/venues"
+    const url = "http://localhost:8080/api/venues"
 
     fetch(url)
       .then((response) => response.json())
@@ -24,8 +24,26 @@ const NotificationScreen = props => {
       .catch((error) =>{
         console.error(error);
       });
-    
+ 
+    const newUser = {
+            emailAddress: "fe@test.com"
+        };
+        const urltest = "http://localhost:8080/api/users";
+
+        fetch(urltest), {
+            method: 'POST',
+                headers: {
+            'Content-Type': 'application/json',
+         },
+            body: JSON.stringify(newUser),
+        };
+
+
+   
+
         
+
+   
         
     
     const emailInputHandler = (email) => {
@@ -69,7 +87,7 @@ return (
           
     </Card>
     <Card style={styles.allEventsButton}>
-        <Button color={Colors.darkAccent} title="SIGN UP" onPress={props.moveButton} />
+        <Button color={Colors.darkAccent} title="SIGN UP"  />
     </Card>
 
     </View>

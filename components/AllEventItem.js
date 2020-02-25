@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
       backgroundColor: Colors.lightAccent
     },
     title: {
-      fontFamily: 'monospace',
+      fontFamily: 'Arial',
       marginBottom: 10,
       alignSelf: 'center',
       fontSize: 20,

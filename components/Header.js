@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         color: Colors.darkShades,
         fontSize: 25,
-        fontFamily: 'monospace',
+        fontFamily: 'Arial',
         fontWeight: 'bold'
     }
 });

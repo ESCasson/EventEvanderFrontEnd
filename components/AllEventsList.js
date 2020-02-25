@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center'
     },
     title: {
-      fontFamily: 'monospace',
+      fontFamily: 'Arial',
       marginBottom: 10,
       alignSelf: 'center',
       fontSize: 20,

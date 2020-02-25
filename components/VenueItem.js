@@ -8,7 +8,7 @@ const VenueItem = props => {
     const [checkedState, setCheckedState] = useState(false);
    
 
-    handleCheckboxPress = () => {
+    function handleCheckboxPress(){
         if(checkedState === true){
             setCheckedState(false);
             props.checkOff(props.venue)
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
       backgroundColor: Colors.lightAccent
     },
     title: {
-      fontFamily: 'monospace',
+      fontFamily: 'Arial',
       marginBottom: 10,
       alignSelf: 'center',
       fontSize: 20,

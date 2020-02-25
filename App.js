@@ -18,7 +18,7 @@ export default class App extends Component {
   }
 
   componentDidMount(){
-    const url = "https://raw.githubusercontent.com/ESCasson/API/master/Basic"
+    const url = "http://localhost:8080/api/events"
 
     return fetch(url)
       .then((response) => response.json())
