@@ -48,9 +48,8 @@ export default class SignUpScreen extends Component {
     
    handleSignUp = () => {
 
-    const newUser = { emailAddress:  '',
+    const newUser = { emailAddress: this.state.email,
                         venues: ''   };
-                        console.log(newUser);
    
     const urltest = "http://localhost:8080/api/users";
 
@@ -98,7 +97,7 @@ render(){
             
         <Card style={styles.signUpCard}>
             <Text>Please enter email address: </Text>
-            <TextInput onChangeText={() => {}} style={styles.input}  ></TextInput>
+            <TextInput onChangeText={this.state.email} style={styles.input}  ></TextInput>
             <Button title='Clear Email' onPress={this.handleClear()}/>
            
             <FlatList data={this.state.venues} 
@@ -113,7 +112,7 @@ render(){
               
         </Card>
         <Card style={styles.allEventsButton}>
-            <Button color={Colors.darkAccent} title="SIGN UP"   />
+            <Button color={Colors.darkAccent} title="SIGN UP"  onPress={()=>{}}  />
             
             
         </Card>
