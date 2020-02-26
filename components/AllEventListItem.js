@@ -4,7 +4,7 @@ import { CheckBox } from 'react-native-elements';
 
 import Colors from '../constants/colors';
 
-export default class HelloWorldApp extends Component {
+export default class AllEventListItem extends Component {
     constructor(props) {
         super(props);
         

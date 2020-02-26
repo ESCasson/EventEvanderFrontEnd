@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, FlatList} from 'react-native';
-import AllEventItem from './AllEventItem';
+import AllEventItem from './AllEventItemOld';
 import Card from './Card';
 import Colors from '../constants/colors';
-import TestClass from '../components/TestClass';
+import AllEventListItem from '../components/AllEventListItem';
 
 const AllEventsList = props => {
 
@@ -16,7 +16,7 @@ const AllEventsList = props => {
     <FlatList
           data={props.data}
           renderItem={({item}) => 
-           <TestClass user={props.user} event={item} />
+           <AllEventListItem user={props.user} event={item} />
             }
           keyExtractor={({id}, index) => id.toString()}
         />
