@@ -7,6 +7,7 @@ import  Colors  from '../constants/colors';
 
 
 const AllEventsScreen = props => {
+s
 
 return (
     <View>
@@ -19,7 +20,7 @@ return (
              <Button color={Colors.darkShades} title="Next 7 Days" onPress={props.moveButton} />
              </View>
              <View style={styles.button}>
-             <Button color={Colors.darkShades} title="Next 30 Days"  />
+             <Button color={Colors.darkShades} title="Next 30 Days"/>
              </View>
              <View>
              <Button color={Colors.darkAccent} title=" Go Back To Front Page " onPress={props.moveButton} />
