@@ -42,7 +42,7 @@ export default class App extends Component {
 
   componentDidMount(){
     const urlEvent = "http://localhost:8080/api/events/next7days"
-    const urlUser = "http://localhost:8080/api/users/1"
+    const urlUser = "http://localhost:8080/api/users/4"
 
     const eventPromise = ()=> {
       return fetch(urlEvent)

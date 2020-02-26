@@ -7,7 +7,7 @@ import  Colors  from '../constants/colors';
 
 
 const AllEventsScreen = props => {
-s
+
 
 return (
     <View>

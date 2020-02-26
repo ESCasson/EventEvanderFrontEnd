@@ -105,7 +105,7 @@ return (
           
     </Card>
     <Card style={styles.allEventsButton}>
-        <Button color={Colors.darkAccent} title="SIGN UP" onPress={()=>{handleSignUp(), moveButton()}}  />
+        <Button color={Colors.darkAccent} title="SIGN UP" onPress={()=>{handleSignUp(), props.moveButton()}}  />
         
     </Card>
 
