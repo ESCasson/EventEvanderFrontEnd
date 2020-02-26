@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, FlatList} from 'react-native';
-import AllEventItem from './AllEventItemOld';
 import Card from './Card';
 import Colors from '../constants/colors';
 import AllEventListItem from '../components/AllEventListItem';

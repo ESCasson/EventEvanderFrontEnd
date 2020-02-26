@@ -1,40 +1,36 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import {View, StyleSheet, Button, Text, TextInput, FlatList} from 'react-native';
 import Card from '../components/Card';
 import  Colors  from '../constants/colors';
 import VenueItem from '../components/VenueItem';
 
-export default class SignUpScreen extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = { 
-            venues: '',
-            email: '',
-            choosenVenues: '' }
-      }
 
-   componentDidMount(){
-       console.log('mount');
-    const url = "http://localhost:8080/api/venues"
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({venues: responseJson})
+const SignUpScreen = props => {
+    console.log("Called");
     
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
-   };
+    const [venues, setVenues] = useState('');
+    const [email, setEmail] = useState('');
+    const[choosenVenues, setChoosenVenues] = useState([]);
   
-     
+     const handleChooseVenues = () => {
+        const url = "http://localhost:8080/api/venues"
 
-    reMapChoosenVenueArray = () => {
+        fetch(url)
+          .then((response) => response.json())
+          .then((responseJson) => {
+            setVenues(responseJson)
+        
+          })
+          .catch((error) =>{
+            console.error(error);
+          });
+    };
+
+    const reMapChoosenVenueArray = () => {
         const newArray = [];
 
-        const newVenues = this.state.choosenVenues.map((venue) =>{
+        const newVenues = choosenVenues.map((venue) =>{
             const newVenue = {
                 name: venue.name, 
                 capacity: venue.capacity, 
@@ -46,10 +42,11 @@ export default class SignUpScreen extends Component {
         return newArray;
     }
     
-   handleSignUp = () => {
+   const handleSignUp = () => {
 
-    const newUser = { emailAddress: this.state.email,
-                        venues: ''   };
+    const newUser = { emailAddress:  email,
+                        venues: reMapChoosenVenueArray()   };
+                        console.log(newUser);
    
     const urltest = "http://localhost:8080/api/users";
 
@@ -61,69 +58,63 @@ export default class SignUpScreen extends Component {
                 Accept: 'application/json',
             'Content-Type': 'application/json'},
             body: JSON.stringify(newUser)
-        }).then(this.setState({
-            email: ''}))
+        });
         
-   }
+   };
 
     
-    emailInputHandler = () => {
-            this.setState[{email: ''}]
-          }
+    const emailInputHandler = (email) => {
+            setEmail(email);
+          };
     
-    handleVenueCheckboxOn = (venue) => {
-        const currentChoosenVenues = this.state.choosenVenues;
-            this.setState({choosenVenues: (currentVenue => [...currentChoosenVenues, venue] )});
+    const handleVenueCheckboxOn = (venue) => {
+            setChoosenVenues(currentVenue => [...choosenVenues, venue] );
           };
 
-    handleVenueCheckboxOff = (venue) => {
-        const currentChoosenVenues = this.state.choosenVenues;
+    const handleVenueCheckboxOff = (venue) => {
+        const newChoosenVenues = choosenVenues.filter(function(item) {
+            return item.name !== venue.name });
 
-        const newChoosenVenues = "venues go here"
-
-        this.setState({choosenVenues: newChoosenVenues});
+        setChoosenVenues( newChoosenVenues);
            
     };
 
-    handleClear = () => {
-      
+    const handleClear = () => {
+        setEmail('');
     };
 
+    
     
           
-render(){
-    return (
-        <View>
-            
-        <Card style={styles.signUpCard}>
-            <Text>Please enter email address: </Text>
-            <TextInput onChangeText={this.state.email} style={styles.input}  ></TextInput>
-            <Button title='Clear Email' onPress={this.handleClear()}/>
-           
-            <FlatList data={this.state.venues} 
-            renderItem={({item}) => 
-            <VenueItem venue={item}>Venue Here</VenueItem>
-             }
-           keyExtractor={({id}, index) => id.toString()}
-            
-            />
-            
-    
-              
-        </Card>
-        <Card style={styles.allEventsButton}>
-            <Button color={Colors.darkAccent} title="SIGN UP"  onPress={()=>{}}  />
-            
-            
-        </Card>
-    
-        </View>
-           
-        );
-    };
 
-}
+return (
+    <View>
+        
+    <Card style={styles.signUpCard}>
+        <Text>Please enter email address: </Text>
+        <TextInput onChangeText={emailInputHandler} style={styles.input} value={email} ></TextInput>
+        <Button title='Clear Email' onPress={handleClear}/>
+        <Button color={Colors.darkAccent} title="Choose Venues" onPress={handleChooseVenues}  />
 
+        <FlatList data={venues}
+          renderItem={({item}) => 
+           <VenueItem venue={item} checkOn={handleVenueCheckboxOn} checkOff={handleVenueCheckboxOff} ></VenueItem>
+            }
+          keyExtractor={({id}, index) => id.toString()} />
+
+          
+    </Card>
+    <Card style={styles.allEventsButton}>
+        <Button color={Colors.darkAccent} title="SIGN UP" onPress={handleSignUp, props.moveButton}  />
+        
+    </Card>
+
+    </View>
+    
+        
+    );
+
+};
 
 
 const styles = StyleSheet.create({
@@ -157,3 +148,5 @@ const styles = StyleSheet.create({
         marginVertical: 10
     },
 });
+
+export default SignUpScreen;
